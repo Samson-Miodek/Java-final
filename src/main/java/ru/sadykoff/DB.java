@@ -26,9 +26,9 @@ public final class DB {
         statement.execute(
                 "CREATE TABLE if not exists 'country' (" +
                     "'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "'name' text, " +
-                    "'subregion' text, " +
-                    "'region' text, " +
+                    "'name' varchar, " +
+                    "'subregion' varchar, " +
+                    "'region' varchar, " +
                     "'internet_users' INT, " +
                     "'population' INT);");
         statement.close();
