@@ -1,5 +1,7 @@
 package ru.sadykoff;
 
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
@@ -22,7 +24,7 @@ public final class DB {
         connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.db");
         var statement = connection.createStatement();
 
-        statement.execute("drop table 'country';");
+        statement.execute("drop table IF EXISTS 'country';");
         statement.execute(
                 "CREATE TABLE if not exists 'country' (" +
                     "'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -51,7 +53,27 @@ public final class DB {
 
     //задание 1
     //Постройте график процентного соотношения пользователей в интернете от всего населения по субрегионам.
-    public static PieDataset getInternetUsersPercentSubregionDataset() throws SQLException {
+    public static CategoryDataset getInternetUsersPercentSubregionDatasetCategoryDataset() throws SQLException {
+        final var SQL = "SELECT subregion, CAST(sum(internet_users) AS real)/sum(population) AS percent FROM country GROUP BY subregion;";
+        var statement = connection.createStatement();
+        var rs = statement.executeQuery(SQL);
+
+        var dataset = new DefaultCategoryDataset();
+
+        while (rs.next()) {
+            var subregion = rs.getString("subregion");
+            var percent = rs.getDouble("percent");
+            dataset.setValue(percent*100, "Percent internet users", subregion);
+        }
+
+        statement.close();
+
+        return dataset;
+    }
+
+    //задание 1
+    //Постройте график процентного соотношения пользователей в интернете от всего населения по субрегионам.
+    public static PieDataset getInternetUsersPercentSubregionDatasetPieDataset() throws SQLException {
         final var SQL = "SELECT subregion, CAST(sum(internet_users) AS real)/sum(population) AS percent FROM country GROUP BY subregion;";
         var statement = connection.createStatement();
         var rs = statement.executeQuery(SQL);

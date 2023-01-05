@@ -13,7 +13,8 @@ public class Main {
 
         //Задание 1
         //Постройте график процентного соотношения пользователей в интернете от всего населения по субрегионам.
-        PieChart.showDataset(DB.getInternetUsersPercentSubregionDataset());
+        new BarChart(DB.getInternetUsersPercentSubregionDatasetCategoryDataset());
+        new PieChart(DB.getInternetUsersPercentSubregionDatasetPieDataset());
 
         System.out.println("Задание 2");
         System.out.println("Выведите название страны с наименьшим кол-вом зарегистрированных в ин-ете пользователей в Восточной Европе.");

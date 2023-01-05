@@ -25,9 +25,12 @@ public class PieChart extends ApplicationFrame
     static {
         ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow", true));
     }
-    public PieChart(String title, PieDataset dataset) {
-        super(title);
+    public PieChart(PieDataset dataset) {
+        super("График процентного соотношения пользователей в интернете от всего населения по субрегионам.");
         setContentPane(createChartPanel(dataset));
+        pack();
+        RefineryUtilities.centerFrameOnScreen(this);
+        setVisible(true);
     }
     public JPanel createChartPanel(PieDataset dataset)
     {
@@ -67,13 +70,5 @@ public class PieChart extends ApplicationFrame
         plot.setLabelPaint(Color.DARK_GRAY);
         plot.setLabelBackgroundPaint(null);
         return chart;
-    }
-
-    public static void showDataset(PieDataset dataset)
-    {
-        var demo = new PieChart("График процентного соотношения пользователей в интернете от всего населения по субрегионам.",dataset);
-        demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
-        demo.setVisible(true);
     }
 }
