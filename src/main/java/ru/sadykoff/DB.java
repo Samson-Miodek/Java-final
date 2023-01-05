@@ -22,7 +22,7 @@ public final class DB {
         connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/database.db");
         var statement = connection.createStatement();
 
-        statement.execute("drop table 'country';");
+        statement.execute("drop table IF EXISTS 'country';");
         statement.execute(
                 "CREATE TABLE if not exists 'country' (" +
                     "'id' INTEGER PRIMARY KEY AUTOINCREMENT, " +
