@@ -1,5 +1,5 @@
 # 10 вариант
-![3](https://user-images.githubusercontent.com/85055886/208242867-cb34ffb5-a10f-4eeb-83c1-d24932b407d7.png)
+![javaulearn10](https://user-images.githubusercontent.com/85055886/210879362-8007d1cf-b7fc-44a2-bd3e-52d557daeca0.png)
 
 1. Добавил зависимости в pom.xml
 2. Создал класс базы данных, страны 
